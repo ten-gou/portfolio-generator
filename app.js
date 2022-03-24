@@ -1,35 +1,14 @@
-var commandLineArgs = process.argv;
-console.log(commandLineArgs);
+const { Warning } = require("postcss");
+
 const profileDataArgs = process.argv.slice(2, process.argv.length);
-console.log(profileDataArgs);;
+const [name, github] = profileDataArgs;
+const fs = require('fs');
+const generatePage = require('./src/page-template.js');
 
-const animalArray = ['dog', 'cat', 'pig'];
 
-animalArray.push('cow');
-
-const personObj = {
-  name: 'Lernantino',
-  age: 99
-};
-
-personObj.age = 100;
-personObj.occupation = 'Developer';
-
-// Notice the lack of parentheses around the `profileDataArr` parameter?
-const printProfileData = profileDataArr => {
-    // This...
-    for (let i = 0; i < profileDataArr.length; i += 1) {
-      console.log(profileDataArr[i]);
-    }
+fs.writeFile('./index.html', generatePage(name, github), err => {
+    if (err) throw new Error(err);
   
-    console.log('================');
-  
-    // Is the same as this... but requires an array to work
-    profileDataArr.forEach((profileItem) => {
-      console.log(profileItem)
-    });
-  };
-  
-  printProfileData(profileDataArgs);
-
+    console.log('Portfolio complete! Check out index.html to see the output!');
+  });
   
