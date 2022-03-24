@@ -2,6 +2,7 @@ const { Warning } = require("postcss");
 
 const profileDataArgs = process.argv.slice(2, process.argv.length);
 const [name, github] = profileDataArgs;
+// require basically links one file to another for js
 const fs = require('fs');
 const generatePage = require('./src/page-template.js');
 
